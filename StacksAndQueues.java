@@ -4,21 +4,52 @@ import java.io.*;
 
 public class StacksAndQueues {
 	public static void main(String[] args) throws FileNotFoundException{
-		Scanner in=new Scanner(new FileReader("index.txt.txt"));
+		Scanner in=new Scanner(new FileReader("index2.txt"));
 		Stack<Queue<String>> s=new Stack<Queue<String>>();
+		int level=-1;
 		while(in.hasNext()){
-			int i=0;
 			String line=in.nextLine();
-			System.out.println(indentation(line));
+			int ind=indentation(line);
+			if(ind>level){
+				level=ind;
+				s.push(new LinkedList<String>());
+			}
+			else if(ind<level){
+				if(!s.empty())
+					if(!isSorted(s.pop())){
+						System.out.println(s);
+						System.out.println("no");
+						return;
+					}
+				ind--;
+			}
+			if(!s.empty())
+				s.peek().add(line);
+			//System.out.println(indentation(line));
 		}
+		while(!s.empty()){
+			if(!isSorted(s.pop())){
+				System.out.println(s);
+				System.out.println("no");
+				return;
+			}
+		}
+		System.out.println("yes");
 	}
-	public static boolean isSorted(String[] list){
-		
+	public static boolean isSorted(Queue<String> list){
+		String lastStr=list.poll();
+		String str=list.poll();
+		while(str!=null){
+			if(str.compareTo(lastStr)<0)
+				return false;
+			lastStr=str;
+			str=list.poll();
+		}
 		return true;
 	}
 	public static int indentation(String line){
 		int i;
-		for(i=0;i<line.length() && line.substring(i,i+1).equals(" ");i++){}
+		for(i=0;i<line.length() && line.substring(i,i+1).equals("\t");i++){}
 		return i;
 	}
 }
