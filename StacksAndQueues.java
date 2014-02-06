@@ -4,7 +4,7 @@ import java.io.*;
 
 public class StacksAndQueues {
 	public static void main(String[] args) throws FileNotFoundException{
-		Scanner in=new Scanner(new FileReader("index2.txt"));
+		Scanner in=new Scanner(new FileReader("index3.txt"));
 		Stack<Queue<String>> s=new Stack<Queue<String>>();
 		int level=-1;
 		while(in.hasNext()){
@@ -14,14 +14,14 @@ public class StacksAndQueues {
 				level=ind;
 				s.push(new LinkedList<String>());
 			}
-			else if(ind<level){
+			while(ind<level){
 				if(!s.empty())
 					if(!isSorted(s.pop())){
 						System.out.println(s);
 						System.out.println("no");
 						return;
 					}
-				ind--;
+				level--;
 			}
 			if(!s.empty())
 				s.peek().add(line);
