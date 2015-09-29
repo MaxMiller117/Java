@@ -34,8 +34,6 @@
  *
  */
 
-package learn;
-
 public class CelsiusConverterGUI extends javax.swing.JFrame {
     
     /** Creates new form CelsiusConverterGUI */
