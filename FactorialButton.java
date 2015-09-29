@@ -9,8 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 public class FactorialButton extends JFrame{
-	private static final int WIDTH = 300;
-	private static final int HEIGHT = 100;
+	private static final int WIDTH=300;
+	private static final int HEIGHT=100;
 	private JTextField xBox; // holds user entry
 	private JTextField xfBox; // holds generated factorial
  //*********************************************************
@@ -24,12 +24,12 @@ public class FactorialButton extends JFrame{
 	} // end FactorialButton constructor
  //*********************************************************
 	private void createContents(){
-		JLabel xLabel = new JLabel("x:");
-		JLabel xfLabel = new JLabel("x!:");
-		JButton btn = new JButton("Factorial");
-		Listener listener = new Listener();
-		xBox = new JTextField(2);
-		xfBox = new JTextField(10);
+		JLabel xLabel=new JLabel("x:");
+		JLabel xfLabel=new JLabel("x!:");
+		JButton btn=new JButton("Factorial");
+		Listener listener=new Listener();
+		xBox=new JTextField(2);
+		xfBox=new JTextField(10);
 		xfBox.setEditable(false);
 		add(xLabel);
 		add(xBox);
@@ -49,17 +49,17 @@ public class FactorialButton extends JFrame{
 				x=Integer.parseInt(xBox.getText());
 			}
 			catch (NumberFormatException nfe){
-				x = -1; // indicates an invalid x
+				x=-1; // indicates an invalid x
 			}
-			if (x < 0)
+			if(x<0)
 				xfBox.setText("undefined");
 			else{
-				if (x == 0 || x == 1)
-					xf = 1;
+				if (x==0 || x==1)
+					xf=1;
 				else{
-					xf = 1;
-					for (int i=2; i<=x; i++)
-						xf *= i;
+					xf=1;
+					for (int i=2;i<=x;i++)
+						xf*=i;
 				} // end else
 				xfBox.setText(Integer.toString(xf));
 			} // end else
